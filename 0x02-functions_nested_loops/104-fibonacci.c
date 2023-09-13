@@ -1,44 +1,17 @@
 #include <stdio.h>
 
-/**
- * main - fibonacci <3
- *
- * Purpose - Generate and print Fibonacci numbers up to a large value.
- *
- * Return: (Success)
- */
 int main(void)
 {
-unsigned long int i;
-unsigned long int bef = 1;
-unsigned long int aft = 2;
-unsigned long int l = 1000000000; // One billion
-unsigned long int bef1;
-unsigned long int bef2;
-unsigned long int aft1;
-unsigned long int aft2;
-printf("%lu", bef); // Print the first Fibonacci number
-// Generate and print Fibonacci numbers up to the 90th term
-for (i = 1; i < 91; i++)
+unsigned int fib1 = 1; // Initial Fibonacci number
+unsigned int fib2 = 2; // Second Fibonacci number
+printf("%u, %u", fib1, fib2); // Print the first two Fibonacci numbers
+for (int i = 2; i < 98; i++)
 {
-printf(", %lu", aft);
-aft += bef;
-bef = aft - bef;
-}
-// Handle numbers greater than one billion
-bef1 = (bef / l);
-bef2 = (bef % l);
-aft1 = (aft / l);
-aft2 = (aft % l);
-for (i = 92; i < 99; ++i)
-{
-printf(", %lu", aft1 + (aft2 / l));
-printf("%lu", aft2 % l);
-aft1 = aft1 + bef1;
-bef1 = aft1 - bef1;
-aft2 = aft2 + bef2;
-bef2 = aft2 - bef2;
+unsigned int temp = fib1 + fib2; // Calculate the next Fibonacci number
+printf(", %u", temp); // Print the next Fibonacci number
+fib1 = fib2; // Update the first previous Fibonacci number
+fib2 = temp; // Update the second previous Fibonacci number
 }
 printf("\n");
-return (0);
+return 0;
 }
