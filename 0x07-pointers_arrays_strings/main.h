@@ -1,5 +1,7 @@
-fndef MAIN_ H #define MAIN H
-char * memset (char *s, char b, unsigned int n); int _putchar(char c);
+#ifndef MAIN_H
+#define MAIN H
+char * memset (char *s, char b, unsigned
+int n); int _putchar(char c);
 char * memcpy(char "dest, char *src, unsigned int n);
 char * strchr(char 's, char c);
 unsigned int _strspn(char *s, char *accept);
