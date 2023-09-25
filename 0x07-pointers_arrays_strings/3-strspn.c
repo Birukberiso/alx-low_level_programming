@@ -1,10 +1,3 @@
-#ifndef MAIN_H
-#define MAIN_H
-
-/* Function prototype for _memset */
-char *_memset(char *s, char b, unsigned int n);
-
-#endif /* MAIN_H */
 unsigned int _strspn(char *s, char *accept)
 {
 unsigned int count = 0;
