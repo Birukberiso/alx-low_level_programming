@@ -52,4 +52,4 @@ This repository contains a collection of C programs that demonstrate memory allo
 - Returns `NULL` if `str` is `NULL` or an empty string.
 - The last element of the returned array is `NULL`.
 - Words are separated by spaces.
-
+bxndjdj
