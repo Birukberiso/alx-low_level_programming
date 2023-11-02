@@ -7,7 +7,7 @@
  *
  * Return: number of characters outputted. If an error occurs, returns 0.
  */
-ssize_t display_file_content(const char *file, size_t char_count)
+ssize_t read_textfile(const char *file, size_t char_count)
 {
 	int file_descriptor;
 	ssize_t read_count, write_count;
