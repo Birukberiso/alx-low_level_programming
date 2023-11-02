@@ -1,47 +1,36 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
+#include "main.h"
 
-ssize_t read_textfile(const char *filename, size_t letters)
+/**
+ * display_file_content - reads a text file and outputs the characters
+ * @file: name of the file.
+ * @char_count: number of characters to output.
+ *
+ * Return: number of characters outputted. If an error occurs, returns 0.
+ */
+ssize_t display_file_content(const char *file, size_t char_count)
 {
-	int fd;
+	int file_descriptor;
 	ssize_t read_count, write_count;
 	char *buffer;
 
-	if (filename == NULL)
-	return (0);
-
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
+	if (!file)
 		return (0);
 
-	buffer = malloc(sizeof(char) * letters);
-	if (buffer == NULL)
-	{
-		close(fd);
-		return (0);
-	}
+	file_descriptor = open(file, O_RDONLY);
 
-	read_count = read(fd, buffer, letters);
-	if (read_count == -1)
-	{
-		free(buffer);
-		close(fd);
+	if (file_descriptor == -1)
 		return (0);
-	}
 
+	buffer = malloc(sizeof(char) * (char_count));
+	if (!buffer)
+		return (0);
+
+	read_count = read(file_descriptor, buffer, char_count);
 	write_count = write(STDOUT_FILENO, buffer, read_count);
-	if (write_count == -1 || write_count != read_count)
-	{
-		free(buffer);
-		close(fd);
-		return (0);
-	}
+
+	close(file_descriptor);
 
 	free(buffer);
-	close(fd);
 
 	return (write_count);
 }
-
