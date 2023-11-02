@@ -19,11 +19,15 @@ void print_elf_header(Elf64_Ehdr *header)
 	const char *class;
 	const char *data;
 	const char *os_abi;
+	int i;
 
 	printf("ELF Header:\n");
-	printf("  Magic: %02x %02x %02x %02x\n",
-		header->e_ident[0], header->e_ident[1],
-		header->e_ident[2], header->e_ident[3]);
+	printf("  Magic:   ");
+	for (i = 0; i < EI_NIDENT; i++)
+	{
+		printf("%02x ", header->e_ident[i]);
+	}
+	printf("\n");
 
 	class = header->e_ident[EI_CLASS] == ELFCLASS32 ? "ELF32" : "ELF64";
 	printf("  Class: %s\n", class);
@@ -81,3 +85,4 @@ int main(int argc, char *argv[])
 
 	return (EXIT_SUCCESS); /* use EXIT_SUCCESS instead of literal value */
 }
+
