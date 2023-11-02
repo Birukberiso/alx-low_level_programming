@@ -1,36 +1,36 @@
 #include "main.h"
 
 /**
- * display_file_content - reads a text file and outputs the characters
- * @file: name of the file.
- * @char_count: number of characters to output.
+ * read_textfile - reads a text file and prints the letters
+ * @filename: filename.
+ * @letters: numbers of letters printed.
  *
- * Return: number of characters outputted. If an error occurs, returns 0.
+ * Return: numbers of letters printed. It fails, returns 0.
  */
-ssize_t read_textfile(const char *file, size_t char_count)
+ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int file_descriptor;
-	ssize_t read_count, write_count;
-	char *buffer;
+	int fd;
+	ssize_t nrd, nwr;
+	char *buf;
 
-	if (!file)
+	if (!filename)
 		return (0);
 
-	file_descriptor = open(file, O_RDONLY);
+	fd = open(filename, O_RDONLY);
 
-	if (file_descriptor == -1)
+	if (fd == -1)
 		return (0);
 
-	buffer = malloc(sizeof(char) * (char_count));
-	if (!buffer)
+	buf = malloc(sizeof(char) * (letters));
+	if (!buf)
 		return (0);
 
-	read_count = read(file_descriptor, buffer, char_count);
-	write_count = write(STDOUT_FILENO, buffer, read_count);
+	nrd = read(fd, buf, letters);
+	nwr = write(STDOUT_FILENO, buf, nrd);
 
-	close(file_descriptor);
+	close(fd);
 
-	free(buffer);
+	free(buf);
 
-	return (write_count);
+	return (nwr);
 }
